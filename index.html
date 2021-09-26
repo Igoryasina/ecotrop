@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Экотропность</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+<header>
+
+		<h1 id="header_name">Экотропность</h1>
+
+</header>
+<div id="Search">
+	<form>
+		<center>
+
+		    <input type="button" name="enter" value="Поиск" id="Search_buttun">
+		    </br>
+		    <h1 class="form_lable">Точка отправления</h1>
+
+		    <input class="edit" type="edit" name="first" id="first" value="Валовая улица, 26">
+		    </br>
+		    <h1 class="form_lable">Точка прибытия</h1>
+		    <input class="edit" type="edit" name="end" id="end" value="Валовая улица, 20">
+		    </br>
+		    <input type="button" name="name" value="Построить маршрут" id="Search_buttun_Enter">
+		</center>
+	</form>
+</div>
+<div id="Map">
+<img src="map.jpg" style="width: 50%;">
+<div id="points">
+	<div class="point" id="Valovaya1"></div>
+	<div class="line" id="Val1_Val2"></div>
+	<div class="point" id="Valovaya2"></div>
+	<div class="point" id="Valovaya3"></div>
+	<div class="point" id="Valovaya4"></div>
+	<canvas width="300" height="225" style="border: solid;" id="line"></canvas>
+</div>
+</div>
+
+<script type="text/javascript">
+	$("#Search_buttun_Enter").click(function(){
+		
+        const first = document.getElementById('first').value;
+        const end = document.getElementById('end').value;
+        const Valovaya1 = document.querySelector('#Valovaya1');
+        const Valovaya2 = document.querySelector('#Valovaya2');
+        const Valovaya3 = document.querySelector('#Valovaya3');
+        const Valovaya4 = document.querySelector('#Valovaya4');
+
+        //Валовая - 1 часть
+        if (first=="Валовая улица, 73" || first=="Валовая улица, 33" || first=="Валовая улица, 26" || first=="Валовая улица, 29" || first=="Валовая улица, 28") {
+        	Valovaya1.style.visibility = 'visible';
+        	Valovaya2.style.visibility = 'hidden';
+        	Valovaya3.style.visibility = 'hidden';
+        	Valovaya4.style.visibility = 'hidden';
+
+        }
+
+        //Валовая - 2 часть
+        if (first=="Валовая улица, 20" || first=="Валовая улица, 11/19" || first=="Валовая улица, 21к/125" || first=="Валовая улица, 2с1" || first=="Валовая улица, 2-4/44с1" || first=="Валовая улица, 18" || first=="Валовая улица, 8/18" || first=="Валовая улица, 3" || first=="Валовая улица, 6" ) {
+        	Valovaya1.style.visibility = 'hidden';
+        	Valovaya2.style.visibility = 'visible';
+        	Valovaya3.style.visibility = 'hidden';
+        	Valovaya4.style.visibility = 'hidden';
+
+        }
+
+        //Валовая - 3 часть
+        if (first=="Бахрушина, 31/12с1" || first=="Бахрушина, 31/12с3" || first=="Зацепский Вал, 20" || first=="Зацепский Вал, 16" || first=="Бахрушина, 36/14с3") {
+        	Valovaya1.style.visibility = 'hidden';
+        	Valovaya2.style.visibility = 'hidden';
+        	Valovaya3.style.visibility = 'visible';
+        	Valovaya4.style.visibility = 'hidden';
+
+        }
+
+        //Валовая - 4 часть
+        if (first=="Зацепский Вал, 6/13с1" || first=="Зацепский Вал, 4с1" || first=="Зацепский Вал, 5" || first=="Зацепский Вал, 2с3" || first=="Зацепский Вал, 2с2" || first=="Зацепский Вал, 56" || first=="Зацепский Вал, 54с1" || first=="Зацепский Вал, 2/1с1" || first=="Зацепский Вал, 6с2") {
+        	Valovaya1.style.visibility = 'hidden';
+        	Valovaya2.style.visibility = 'hidden';
+        	Valovaya3.style.visibility = 'hidden';
+        	Valovaya4.style.visibility = 'visible';
+
+        }
+
+
+        // поиск конечной точки
+        //Валовая - 1 часть
+        if (end=="Валовая улица, 73" || end=="Валовая улица, 33" || end=="Валовая улица, 26" || end=="Валовая улица, 29" || end=="Валовая улица, 28") {
+        	Valovaya1.style.visibility = 'visible';
+        }
+
+        //Валовая - 2 часть
+        if (end=="Валовая улица, 20" || end=="Валовая улица, 11/19" || end=="Валовая улица, 21к/125" || end=="Валовая улица, 2с1" || end=="Валовая улица, 2-4/44с1" || end=="Валовая улица, 18" || end=="Валовая улица, 8/18" || end=="Валовая улица, 3" || end=="Валовая улица, 6" ) {
+
+        	Valovaya2.style.visibility = 'visible';
+
+
+        }
+
+        //Валовая - 3 часть
+        if (end=="Бахрушина, 31/12с1" || end=="Бахрушина, 31/12с3" || end=="Зацепский Вал, 20" || end=="Зацепский Вал, 16" || end=="Бахрушина, 36/14с3") {
+
+        	Valovaya3.style.visibility = 'visible';
+
+
+        }
+
+        //Валовая - 4 часть
+        if (end=="Зацепский Вал, 6/13с1" || end=="Зацепский Вал, 4с1" || end=="Зацепский Вал, 5" || end=="Зацепский Вал, 2с3" || end=="Зацепский Вал, 2с2" || end=="Зацепский Вал, 56" || end=="Зацепский Вал, 54с1" || end=="Зацепский Вал, 2/1с1" || end=="Зацепский Вал, 6с2") {
+
+        	Valovaya4.style.visibility = 'visible';
+
+        }
+
+
+var b_canvas = document.getElementById("line");
+var b_context = b_canvas.getContext("2d");
+b_context.beginPath();
+
+//путь от 1-ой точки
+if(Valovaya1.style.visibility == 'visible' && Valovaya2.style.visibility == 'visible')
+{
+b_context.moveTo(139,154);
+b_context.lineTo(155, 154);}
+else
+if(Valovaya1.style.visibility == 'visible' && Valovaya3.style.visibility == 'visible')
+{
+b_context.moveTo(139,154);
+b_context.lineTo(155, 154);
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);}
+else
+if(Valovaya1.style.visibility == 'visible' && Valovaya4.style.visibility == 'visible')
+{
+b_context.moveTo(139,154);
+b_context.lineTo(155, 154);
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);
+b_context.moveTo(170,148);
+b_context.lineTo(182, 138);}
+
+
+//путь от 2-ой точки
+if(Valovaya1.style.visibility == 'visible' && Valovaya2.style.visibility == 'visible')
+{
+b_context.moveTo(139,154);
+b_context.lineTo(155, 154);}
+else
+if(Valovaya2.style.visibility == 'visible' && Valovaya3.style.visibility == 'visible')
+{
+
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);}
+else
+if(Valovaya2.style.visibility == 'visible' && Valovaya4.style.visibility == 'visible')
+{
+
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);
+b_context.moveTo(170,148);
+b_context.lineTo(182, 138);}
+
+
+//путь от 3-ой точки
+if(Valovaya3.style.visibility == 'visible' && Valovaya1.style.visibility == 'visible')
+{
+b_context.moveTo(139,154);
+b_context.lineTo(155, 154);
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);}
+else
+if(Valovaya2.style.visibility == 'visible' && Valovaya3.style.visibility == 'visible')
+{
+
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);}
+else
+if(Valovaya4.style.visibility == 'visible' && Valovaya1.style.visibility == 'visible')
+{
+
+b_context.moveTo(170,148);
+b_context.lineTo(182, 138);
+b_context.moveTo(139,154);
+b_context.lineTo(155, 154);
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);
+b_context.moveTo(170,148);
+b_context.lineTo(182, 138);}
+
+//путь от 4-ой точки
+if(Valovaya4.style.visibility == 'visible' && Valovaya2.style.visibility == 'visible')
+{b_context.moveTo(170,148);
+b_context.lineTo(182, 138);
+b_context.moveTo(139,154);
+b_context.lineTo(155, 154);
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);}
+else
+if(Valovaya2.style.visibility == 'visible' && Valovaya4.style.visibility == 'visible')
+{
+b_context.moveTo(170,148);
+b_context.lineTo(182, 138);
+b_context.moveTo(155,154);
+b_context.lineTo(170, 148);}
+else
+if(Valovaya3.style.visibility == 'visible' && Valovaya4.style.visibility == 'visible')
+{
+
+
+b_context.moveTo(170,148);
+b_context.lineTo(182, 138);}
+
+b_context.stroke();
+});
+  
+	
+</script>
+</body>
+</html>
+  

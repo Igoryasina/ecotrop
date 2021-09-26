@@ -1,0 +1,125 @@
+header{
+	     width: 100%;
+ 
+    margin-top: -1.99%;
+    background-color: #52a962;
+    font-size: 1.5em;
+}
+
+#header_name{
+	color: white;
+	text-align: center;
+	font-family: roboto;
+}
+#Search{
+	float:left;
+	margin-left: 4%;
+	width: 14%;
+}
+
+form{
+	width: 100%;
+	content: center;
+
+
+
+}
+#Search_buttun{
+background-color: #52a962;
+    width: 235%;
+    height: 200%;
+    color: white;
+    font-size: 2em;
+    margin-bottom: 20%;
+}
+
+.edit{
+	height: 40px;
+	width: 230.5%;
+	font-size: 2em;
+	color: #52a962;
+}
+
+img{
+	position: absolute;
+	right: 6%;
+
+}
+.form_lable{
+	color: #52a962;
+
+	width: 250%;
+}
+
+#Search_buttun_Enter{
+	background-color: #52a962;
+    width: 235%;
+
+    color: white;
+    font-size: 200%;
+    margin-top: 20%;
+}
+
+#Search_buttun_Enter:hover{
+	animation-duration: 3s;
+  animation-name: slidein;
+
+}
+
+@keyframes slidein {
+ 
+
+
+  100% {
+    color: green;
+  }
+}
+
+
+.point{
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: #52a962;
+
+}
+
+.line{
+	position: absolute;
+	width: 10px;
+	height: 10px;
+	background-color: #52a962;
+
+}
+
+#Valovaya1{
+		margin-left: 66.5%;
+	margin-top: 25.5%;
+	visibility: hidden;
+
+}
+
+#Valovaya2{
+		margin-left: 68.5%;
+	margin-top: 25.2%;
+	visibility: hidden;
+
+}
+
+#Valovaya3{
+		margin-left: 71%;
+	margin-top: 24.3%;
+	visibility: hidden;
+
+}
+
+#Valovaya4{
+		margin-left: 73%;
+	margin-top: 22.6%;
+	visibility: hidden;
+}
+
+canvas{margin-left: 25.5%;
+width: 49.5%;
+position: absolute;
+}
